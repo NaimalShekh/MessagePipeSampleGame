@@ -1,6 +1,7 @@
 ﻿using System;
 using MessagePipe;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace Model
@@ -9,7 +10,7 @@ namespace Model
     {
         [SerializeField] private int enemyHp;
 
-        private ISubscriber<AttackData> Damage { get; set; }
+        [Inject] private ISubscriber<AttackData> Damage { get; set; }
 
         private IDisposable _disposable;
 
