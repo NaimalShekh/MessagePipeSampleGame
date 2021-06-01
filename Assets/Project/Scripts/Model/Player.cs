@@ -15,9 +15,12 @@ namespace Model
         [Inject] private IPublisher<PlayerAttackData> AttackData { get; set; }
         private IDisposable _disposable;
 
+        private Animator _animator;
+
         private void Awake()
         {
             playerHpText.text = $"player hp:{characterHp}";
+            _animator = GetComponent<Animator>();
         }
 
         private void Start()
@@ -38,6 +41,7 @@ namespace Model
             if (Input.GetKeyDown(KeyCode.A))
             {
                 Debug.Log("プレイヤーが攻撃");
+                _animator.SetTrigger("IsAttack");
                 AttackData.Publish(new PlayerAttackData(){Value = attackValue});
             }
         }

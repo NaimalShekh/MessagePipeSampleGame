@@ -16,11 +16,13 @@ namespace Model
         [Inject] private ISubscriber<PlayerAttackData> Damage { get; set; }
         [Inject] private IPublisher<EnemyAttackData> EnemyAttack { get; set; }
 
+        private Animator _animator;
         private IDisposable _disposable;
 
         private void Awake()
         {
             enemyHpText.text = $"enemy hp:{enemyHp}";
+            _animator = GetComponent<Animator>();
         }
 
         public void Start()
@@ -38,6 +40,7 @@ namespace Model
                 .Subscribe(_ =>
                 {
                     Debug.Log("敵が攻撃");
+                    _animator.SetTrigger("IsAttack");
                     EnemyAttack.Publish(new EnemyAttackData(){Value = 2});
                 }).AddTo(this);
         }
