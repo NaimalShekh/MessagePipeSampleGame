@@ -21,15 +21,6 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
-    "com.euglenach.inputasobservable": {
-      "version": "https://github.com/euglenach/InputAsObservable.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.neuecc.unirx": "7.1.0"
-      },
-      "hash": "7ee70a568f4651ca838d7436c61938bc11343801"
-    },
     "com.neuecc.unirx": {
       "version": "7.1.0",
       "depth": 0,
