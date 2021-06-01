@@ -1,18 +1,17 @@
-using Project.Scripts;
+using MessagePipe;
+using Model;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using View;
-using CharacterController = Model.CharacterController;
 
 public class GameLifetimeScope : LifetimeScope
 {
-    [SerializeField] private CharacterController characterController;
     [SerializeField] private InputController inputController;
     protected override void Configure(IContainerBuilder builder)
     {
-        builder.RegisterComponent(characterController);
-        builder.RegisterComponent(inputController);
-        builder.RegisterEntryPoint<Presenter>(Lifetime.Singleton);
+        var options = builder.RegisterMessagePipe();
+        builder.RegisterMessageBroker<AttackData>(options);
+
     }
 }
