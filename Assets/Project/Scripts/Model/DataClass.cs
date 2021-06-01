@@ -1,12 +1,18 @@
 ﻿namespace Model
 {
-    public class PlayerAttackData
+    public class Data
     {
-        public int Value;
+        public int AttackValue;
+        public bool IsLose;
     }
 
-    public class EnemyAttackData
+    public class PlayerData : Data
     {
-        public int Value;
+        
+    }
+
+    public class EnemyData : Data
+    {
+        
     }
 }
