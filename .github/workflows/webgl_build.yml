@@ -1,6 +1,10 @@
 name: Run the WebGL build
-on:
-  workflow_dispatch: {}
+on: 
+  push:
+    paths-ignore:
+      - '.github/**'
+    branches:
+      - main
 jobs:
   build:
     name: Run the WebGL build
