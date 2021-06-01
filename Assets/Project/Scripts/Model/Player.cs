@@ -51,7 +51,7 @@ namespace Model
             {
                 Debug.Log("プレイヤーが攻撃");
                 _animator.SetTrigger("IsAttack");
-                PublishData(3,false);
+                PublishData(attackValue,false);
             }
         }
 
