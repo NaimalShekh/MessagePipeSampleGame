@@ -1,6 +1,8 @@
 ﻿using System;
 using MessagePipe;
+using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
@@ -9,10 +11,17 @@ namespace Model
     public class Enemy : MonoBehaviour,IStartable
     {
         [SerializeField] private int enemyHp;
+        [SerializeField] private Text enemyHpText;
 
-        [Inject] private ISubscriber<AttackData> Damage { get; set; }
+        [Inject] private ISubscriber<PlayerAttackData> Damage { get; set; }
+        [Inject] private IPublisher<EnemyAttackData> EnemyAttack { get; set; }
 
         private IDisposable _disposable;
+
+        private void Awake()
+        {
+            enemyHpText.text = $"enemy hp:{enemyHp}";
+        }
 
         public void Start()
         {
@@ -20,10 +29,17 @@ namespace Model
             Damage.Subscribe(e =>
             {
                 enemyHp -= e.Value;
-                Debug.Log($"enemyHP:{enemyHp}"); 
+                enemyHpText.text = $"enemy hp:{enemyHp}";
             }).AddTo(d);
 
             _disposable = d.Build();
+
+            Observable.Interval(TimeSpan.FromSeconds(5f))
+                .Subscribe(_ =>
+                {
+                    Debug.Log("敵が攻撃");
+                    EnemyAttack.Publish(new EnemyAttackData(){Value = 2});
+                }).AddTo(this);
         }
 
         private void OnDestroy()
