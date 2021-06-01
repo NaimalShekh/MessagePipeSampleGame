@@ -31,6 +31,7 @@ namespace Model
             Damage.Subscribe(e =>
             {
                 enemyHp -= e.Value;
+                _animator.SetTrigger("IsDamage");
                 enemyHpText.text = $"enemy hp:{enemyHp}";
             }).AddTo(d);
 
