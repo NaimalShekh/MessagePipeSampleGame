@@ -9,8 +9,8 @@ public class GameLifetimeScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
         var options = builder.RegisterMessagePipe();
-        builder.RegisterMessageBroker<PlayerAttackData>(options);
-        builder.RegisterMessageBroker<EnemyAttackData>(options);
+        builder.RegisterMessageBroker<PlayerData>(options);
+        builder.RegisterMessageBroker<EnemyData>(options);
 
     }
 }
