@@ -1,5 +1,8 @@
 # MessagePipeSampleGame
 
+## 公開ページ(ゲームを実行できます)
+[GamePage](https://ayutaz.github.io/MessagePipeSampleGame/WebGL/WebGL/)
+
 ## Requirements
 * 2020.3.9f1
 
